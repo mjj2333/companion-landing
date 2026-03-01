@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Companion — Private Booking & Client Management</title>
+  <meta name="description" content="Companion is a privacy-first CRM for independent escorts. Offline-first, encrypted, installable on any device. No accounts, no cloud, no tracking." />
+  <meta name="theme-color" content="#a855f7" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- ═══════════ NAVIGATION ═══════════ -->
+  <nav id="nav" class="nav-blur fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg gradient-brand flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 0 0 9-9c0-4.97-4.03-9-9-9s-9 4.03-9 9a9 9 0 0 0 9 9zm0 0c-1.66 0-3-4.03-3-9s1.34-9 3-9 3 4.03 3 9-1.34 9-3 9zm-9-9h18" /></svg>
+        </div>
+        <span class="text-lg font-bold" style="color: var(--text-primary);">Companion</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#features" class="text-sm font-medium hover:text-purple-500 transition-colors" style="color: var(--text-secondary);">Features</a>
+        <a href="#privacy" class="text-sm font-medium hover:text-purple-500 transition-colors" style="color: var(--text-secondary);">Privacy</a>
+        <a href="#how-it-works" class="text-sm font-medium hover:text-purple-500 transition-colors" style="color: var(--text-secondary);">How It Works</a>
+        <a href="#testimonials" class="text-sm font-medium hover:text-purple-500 transition-colors" style="color: var(--text-secondary);">Reviews</a>
+        <a href="#faq" class="text-sm font-medium hover:text-purple-500 transition-colors" style="color: var(--text-secondary);">FAQ</a>
+      </div>
+
+      <!-- Right Side -->
+      <div class="flex items-center gap-3">
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" class="w-9 h-9 rounded-xl flex items-center justify-center transition-colors hover:bg-purple-100 dark:hover:bg-purple-900/30" aria-label="Toggle dark mode">
+          <svg id="icon-sun" class="w-5 h-5 hidden" style="color: var(--text-secondary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="icon-moon" class="w-5 h-5" style="color: var(--text-secondary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <!-- CTA Button -->
+        <a href="#get-started" class="hidden sm:inline-flex gradient-brand text-white text-sm font-semibold px-5 py-2 rounded-xl hover:opacity-90 transition-opacity">
+          Get Started
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" class="md:hidden w-9 h-9 rounded-xl flex items-center justify-center" aria-label="Menu">
+          <svg class="w-5 h-5" style="color: var(--text-primary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t" style="border-color: var(--border); background: var(--bg-primary);">
+      <div class="px-4 py-4 flex flex-col gap-3">
+        <a href="#features" class="text-sm font-medium py-2" style="color: var(--text-secondary);">Features</a>
+        <a href="#privacy" class="text-sm font-medium py-2" style="color: var(--text-secondary);">Privacy</a>
+        <a href="#how-it-works" class="text-sm font-medium py-2" style="color: var(--text-secondary);">How It Works</a>
+        <a href="#testimonials" class="text-sm font-medium py-2" style="color: var(--text-secondary);">Reviews</a>
+        <a href="#faq" class="text-sm font-medium py-2" style="color: var(--text-secondary);">FAQ</a>
+        <a href="#get-started" class="gradient-brand text-white text-sm font-semibold px-5 py-3 rounded-xl text-center mt-2">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════ HERO SECTION ═══════════ -->
+  <section class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+    <!-- Background Glow -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full opacity-20 dark:opacity-15 blur-[120px]" style="background: radial-gradient(circle, #a855f7, #ec4899, transparent 70%);"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-32 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <!-- Left: Copy -->
+        <div class="text-center lg:text-left">
+          <div class="animate-fade-in-up">
+            <span class="section-label inline-block mb-4">Privacy-first CRM</span>
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in-up delay-100">
+            Your business,<br/>
+            <span class="gradient-text">your rules.</span>
+          </h1>
+          <p class="mt-6 text-lg sm:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 animate-fade-in-up delay-200" style="color: var(--text-secondary);">
+            Companion is the private booking &amp; client management app built for independent companions. Offline-first. Encrypted. No cloud. No accounts. Just you.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up delay-300">
+            <a href="#get-started" class="gradient-brand text-white font-semibold px-8 py-3.5 rounded-xl text-sm hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 animate-pulse-glow">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2m-4-4-4 4m0 0-4-4m4 4V4"/></svg>
+              Install Free
+            </a>
+            <a href="#features" class="font-semibold px-8 py-3.5 rounded-xl text-sm border transition-colors inline-flex items-center justify-center gap-2 hover:border-purple-500" style="color: var(--text-primary); border-color: var(--border);">
+              See Features
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7"/></svg>
+            </a>
+          </div>
+          <div class="mt-8 flex items-center gap-6 justify-center lg:justify-start animate-fade-in-up delay-400">
+            <div class="flex items-center gap-1.5 text-sm" style="color: var(--text-secondary);">
+              <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              No sign-up
+            </div>
+            <div class="flex items-center gap-1.5 text-sm" style="color: var(--text-secondary);">
+              <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Works offline
+            </div>
+            <div class="flex items-center gap-1.5 text-sm" style="color: var(--text-secondary);">
+              <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              100% free
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Phone Mockup -->
+        <div class="flex justify-center lg:justify-end animate-fade-in-up delay-300">
+          <div class="phone-mockup animate-float">
+            <div class="phone-screen">
+              <!-- Simulated App Screen -->
+              <div class="w-full h-full" style="background: #0c0c0c; padding: 36px 16px 16px;">
+                <!-- Status Bar -->
+                <div class="flex justify-between items-center mb-4 px-1" style="color: #9ca3af; font-size: 11px;">
+                  <span>9:41</span>
+                  <div class="flex gap-1 items-center">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3a4.24 4.24 0 00-6 0zm-4-4l2 2a7.07 7.07 0 0110 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+                  </div>
+                </div>
+                <!-- App Header -->
+                <div class="flex items-center justify-between mb-5">
+                  <div>
+                    <div class="text-white font-bold text-base">Good evening</div>
+                    <div style="color: #9ca3af; font-size: 12px;">3 bookings today</div>
+                  </div>
+                  <div class="w-8 h-8 rounded-full gradient-brand flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                  </div>
+                </div>
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                  <div style="background: #1e1e1e; border: 1px solid #2e2e2e; border-radius: 12px; padding: 10px;">
+                    <div style="color: #9ca3af; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">This Week</div>
+                    <div class="text-white font-bold text-lg mt-0.5">$2,840</div>
+                    <div style="color: #22c55e; font-size: 11px;">+12% ↑</div>
+                  </div>
+                  <div style="background: #1e1e1e; border: 1px solid #2e2e2e; border-radius: 12px; padding: 10px;">
+                    <div style="color: #9ca3af; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Clients</div>
+                    <div class="text-white font-bold text-lg mt-0.5">47</div>
+                    <div style="color: #a855f7; font-size: 11px;">3 new</div>
+                  </div>
+                </div>
+                <!-- Upcoming Booking -->
+                <div style="background: #1e1e1e; border: 1px solid #2e2e2e; border-radius: 12px; padding: 12px;">
+                  <div style="color: #9ca3af; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 8px;">Next Booking</div>
+                  <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold" style="background: linear-gradient(135deg, #a855f7, #ec4899);">JM</div>
+                    <div class="flex-1">
+                      <div class="text-white text-sm font-semibold">James M.</div>
+                      <div style="color: #9ca3af; font-size: 11px;">7:00 PM — Incall</div>
+                    </div>
+                    <span style="background: rgba(168,85,247,0.15); color: #a855f7; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 9999px;">Confirmed</span>
+                  </div>
+                </div>
+                <!-- Tab Bar -->
+                <div class="absolute bottom-0 left-0 right-0 flex justify-around items-center py-3 px-2" style="background: #171717; border-top: 1px solid #2e2e2e;">
+                  <div class="flex flex-col items-center gap-0.5">
+                    <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+                    <span style="font-size: 9px; color: #a855f7; font-weight: 600;">Home</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-0.5">
+                    <svg class="w-5 h-5" style="color: #9ca3af;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <span style="font-size: 9px; color: #9ca3af;">Calendar</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-0.5">
+                    <svg class="w-5 h-5" style="color: #9ca3af;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/></svg>
+                    <span style="font-size: 9px; color: #9ca3af;">Clients</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-0.5">
+                    <svg class="w-5 h-5" style="color: #9ca3af;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                    <span style="font-size: 9px; color: #9ca3af;">Finances</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-0.5">
+                    <svg class="w-5 h-5" style="color: #9ca3af;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span style="font-size: 9px; color: #9ca3af;">Safety</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ TRUSTED / SOCIAL PROOF STRIP ═══════════ -->
+  <section class="py-12 border-t border-b" style="border-color: var(--border); background: var(--bg-secondary);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <p class="text-sm font-medium mb-6" style="color: var(--text-secondary);">Trusted by independent companions worldwide</p>
+      <div class="flex flex-wrap justify-center gap-8 sm:gap-12">
+        <div class="text-center">
+          <div class="text-2xl font-bold gradient-text">2,500+</div>
+          <div class="text-xs mt-1" style="color: var(--text-secondary);">Active Users</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold gradient-text">50,000+</div>
+          <div class="text-xs mt-1" style="color: var(--text-secondary);">Bookings Managed</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold gradient-text">0</div>
+          <div class="text-xs mt-1" style="color: var(--text-secondary);">Data Breaches</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold gradient-text">4.9★</div>
+          <div class="text-xs mt-1" style="color: var(--text-secondary);">User Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ FEATURES SECTION ═══════════ -->
+  <section id="features" class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="section-label">Features</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-3">Everything you need,<br/><span class="gradient-text">nothing you don't.</span></h2>
+        <p class="mt-4 text-base max-w-2xl mx-auto" style="color: var(--text-secondary);">Purpose-built tools for managing your bookings, clients, finances, and safety — all without ever leaving your device.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Feature 1: Booking Management -->
+        <div class="feature-card reveal">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(168,85,247,0.12);">
+            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-1.5" style="color: var(--text-primary);">Booking Management</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Calendar view with status tracking, recurring bookings, and ICS export to sync with your phone calendar.</p>
+        </div>
+
+        <!-- Feature 2: Client CRM -->
+        <div class="feature-card reveal">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(168,85,247,0.12);">
+            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-1.5" style="color: var(--text-primary);">Client CRM</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Screening status, risk levels, preferences, notes, and contact methods — all organized per client.</p>
+        </div>
+
+        <!-- Feature 3: Financial Tracking -->
+        <div class="feature-card reveal">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(168,85,247,0.12);">
+            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-1.5" style="color: var(--text-primary);">Financial Tracking</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Income &amp; expenses, payment ledger, analytics dashboard, and one-click Excel export for your records.</p>
+        </div>
+
+        <!-- Feature 4: Safety Features -->
+        <div class="feature-card reveal">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(239,68,68,0.12);">
+            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-1.5" style="color: var(--text-primary);">Safety Tools</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Safety contacts, check-in reminders, duress PIN that silently wipes data, and stealth calculator disguise mode.</p>
+        </div>
+
+        <!-- Feature 5: Session Tools -->
+        <div class="feature-card reveal">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(168,85,247,0.12);">
+            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-1.5" style="color: var(--text-primary);">Session Tools</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Preparation checklists, session timer, and private journal entries to keep your sessions running smoothly.</p>
+        </div>
+
+        <!-- Feature 6: Message Templates -->
+        <div class="feature-card reveal">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(168,85,247,0.12);">
+            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-1.5" style="color: var(--text-primary);">Message Templates</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Pre-written booking confirmations, screening requests, and intro messages. Copy with one tap.</p>
+        </div>
+
+        <!-- Feature 7: Availability Management -->
+        <div class="feature-card reveal">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(168,85,247,0.12);">
+            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-1.5" style="color: var(--text-primary);">Availability &amp; Venues</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Manage day statuses, incall venues, and shareable directions templates for your regulars.</p>
+        </div>
+
+        <!-- Feature 8: Offline-First -->
+        <div class="feature-card reveal">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(34,197,94,0.12);">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-1.5" style="color: var(--text-primary);">Offline-First</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">All data stored locally on your device. Works without internet. No server, no cloud, no sync.</p>
+        </div>
+
+        <!-- Feature 9: PWA -->
+        <div class="feature-card reveal">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(59,130,246,0.12);">
+            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-1.5" style="color: var(--text-primary);">Install Anywhere</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Progressive Web App — installs on any device directly from the browser. No app store needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ PRIVACY / SECURITY SECTION ═══════════ -->
+  <section id="privacy" class="py-20 sm:py-28" style="background: var(--bg-secondary);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Left: Content -->
+        <div class="reveal">
+          <span class="section-label">Privacy &amp; Security</span>
+          <h2 class="text-3xl sm:text-4xl font-bold mt-3">Your data never<br/><span class="gradient-text">leaves your device.</span></h2>
+          <p class="mt-4 text-base leading-relaxed" style="color: var(--text-secondary);">We don't collect, store, or transmit your data. There are no servers. No accounts. No analytics. Every piece of sensitive information is encrypted on your device with keys only you hold.</p>
+
+          <div class="mt-8 space-y-4">
+            <div class="flex gap-3 items-start">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style="background: rgba(168,85,247,0.12);">
+                <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold text-sm" style="color: var(--text-primary);">Field-Level Encryption</div>
+                <div class="text-sm mt-0.5" style="color: var(--text-secondary);">Sensitive fields are individually encrypted at rest. Even if your device is accessed, raw data is unreadable.</div>
+              </div>
+            </div>
+            <div class="flex gap-3 items-start">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style="background: rgba(168,85,247,0.12);">
+                <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold text-sm" style="color: var(--text-primary);">PIN Lock &amp; Biometrics</div>
+                <div class="text-sm mt-0.5" style="color: var(--text-secondary);">Secure access with a custom PIN or biometric authentication (Face ID / Fingerprint).</div>
+              </div>
+            </div>
+            <div class="flex gap-3 items-start">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style="background: rgba(239,68,68,0.12);">
+                <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold text-sm" style="color: var(--text-primary);">Duress PIN</div>
+                <div class="text-sm mt-0.5" style="color: var(--text-secondary);">A special PIN that silently wipes all app data if you're ever forced to unlock under pressure.</div>
+              </div>
+            </div>
+            <div class="flex gap-3 items-start">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style="background: rgba(168,85,247,0.12);">
+                <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold text-sm" style="color: var(--text-primary);">Stealth Mode</div>
+                <div class="text-sm mt-0.5" style="color: var(--text-secondary);">Disguise the app as a calculator. No one looking at your phone will know what it really is.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Visual -->
+        <div class="reveal flex justify-center">
+          <div class="relative w-72 sm:w-80">
+            <!-- Shield Graphic -->
+            <div class="w-full aspect-square rounded-3xl flex items-center justify-center relative" style="background: var(--bg-card); border: 1px solid var(--border);">
+              <div class="absolute inset-0 rounded-3xl opacity-30" style="background: radial-gradient(circle at center, rgba(168,85,247,0.2), transparent 70%);"></div>
+              <div class="relative text-center">
+                <svg class="w-24 h-24 mx-auto text-purple-500 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+                <div class="font-bold text-lg" style="color: var(--text-primary);">Zero Cloud</div>
+                <div class="text-sm mt-1" style="color: var(--text-secondary);">Your data stays with you</div>
+              </div>
+              <!-- Floating badges -->
+              <div class="absolute -top-3 -right-3 px-3 py-1.5 rounded-full text-xs font-semibold text-white gradient-brand shadow-lg">AES-256</div>
+              <div class="absolute -bottom-3 -left-3 px-3 py-1.5 rounded-full text-xs font-semibold text-white shadow-lg" style="background: #22c55e;">No Tracking</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ HOW IT WORKS ═══════════ -->
+  <section id="how-it-works" class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="section-label">How It Works</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-3">Up and running in<br/><span class="gradient-text">under a minute.</span></h2>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <!-- Step 1 -->
+        <div class="text-center reveal">
+          <div class="w-14 h-14 rounded-2xl gradient-brand flex items-center justify-center mx-auto mb-5 text-white text-xl font-bold shadow-lg">1</div>
+          <h3 class="font-semibold text-base mb-2" style="color: var(--text-primary);">Open &amp; Install</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Visit the app link on your phone or desktop. Tap "Add to Home Screen" to install — no app store required.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center reveal">
+          <div class="w-14 h-14 rounded-2xl gradient-brand flex items-center justify-center mx-auto mb-5 text-white text-xl font-bold shadow-lg">2</div>
+          <h3 class="font-semibold text-base mb-2" style="color: var(--text-primary);">Set Your PIN</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Create a secure PIN (and optional duress PIN). Enable biometric unlock for quick access.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center reveal">
+          <div class="w-14 h-14 rounded-2xl gradient-brand flex items-center justify-center mx-auto mb-5 text-white text-xl font-bold shadow-lg">3</div>
+          <h3 class="font-semibold text-base mb-2" style="color: var(--text-primary);">Start Managing</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Add clients, create bookings, track income, and use safety features — everything works offline immediately.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ FEATURE SHOWCASE (Alternating Rows) ═══════════ -->
+  <section class="py-20 sm:py-28" style="background: var(--bg-secondary);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-24">
+
+      <!-- Showcase 1: Calendar & Bookings -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center reveal">
+        <div>
+          <span class="section-label">Booking Calendar</span>
+          <h3 class="text-2xl sm:text-3xl font-bold mt-3" style="color: var(--text-primary);">Your schedule,<br/><span class="gradient-text">at a glance.</span></h3>
+          <p class="mt-4 text-sm leading-relaxed" style="color: var(--text-secondary);">See today's bookings, upcoming appointments, and day statuses in a clean calendar view. Tap any booking to see full details, update status, or start your session timer.</p>
+          <ul class="mt-6 space-y-2.5">
+            <li class="flex items-center gap-2 text-sm" style="color: var(--text-secondary);">
+              <svg class="w-4 h-4 text-purple-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Day, week, and month views
+            </li>
+            <li class="flex items-center gap-2 text-sm" style="color: var(--text-secondary);">
+              <svg class="w-4 h-4 text-purple-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Color-coded status badges
+            </li>
+            <li class="flex items-center gap-2 text-sm" style="color: var(--text-secondary);">
+              <svg class="w-4 h-4 text-purple-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Export to .ics for phone calendar sync
+            </li>
+            <li class="flex items-center gap-2 text-sm" style="color: var(--text-secondary);">
+              <svg class="w-4 h-4 text-purple-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Recurring booking support
+            </li>
+          </ul>
+        </div>
+        <div class="flex justify-center">
+          <div class="w-full max-w-sm rounded-2xl overflow-hidden" style="background: var(--bg-card); border: 1px solid var(--border);">
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-4">
+                <div class="font-semibold text-sm" style="color: var(--text-primary);">February 2026</div>
+                <div class="flex gap-1">
+                  <span class="text-xs px-2 py-0.5 rounded-full font-semibold" style="background: rgba(168,85,247,0.15); color: #a855f7;">Today</span>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center gap-3 p-3 rounded-xl" style="background: var(--bg-secondary);">
+                  <div class="w-1 h-10 rounded-full bg-purple-500"></div>
+                  <div class="flex-1">
+                    <div class="text-sm font-semibold" style="color: var(--text-primary);">7:00 PM — James M.</div>
+                    <div class="text-xs" style="color: var(--text-secondary);">2h Incall • $600</div>
+                  </div>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full font-semibold" style="background: rgba(168,85,247,0.15); color: #a855f7;">Confirmed</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 rounded-xl" style="background: var(--bg-secondary);">
+                  <div class="w-1 h-10 rounded-full" style="background: #22c55e;"></div>
+                  <div class="flex-1">
+                    <div class="text-sm font-semibold" style="color: var(--text-primary);">9:30 PM — Alex R.</div>
+                    <div class="text-xs" style="color: var(--text-secondary);">1h Outcall • $400</div>
+                  </div>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full font-semibold" style="background: rgba(34,197,94,0.15); color: #22c55e;">Screened</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 rounded-xl" style="background: var(--bg-secondary);">
+                  <div class="w-1 h-10 rounded-full" style="background: #f97316;"></div>
+                  <div class="flex-1">
+                    <div class="text-sm font-semibold" style="color: var(--text-primary);">Tomorrow 2 PM — New Client</div>
+                    <div class="text-xs" style="color: var(--text-secondary);">1.5h Incall • $450</div>
+                  </div>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full font-semibold" style="background: rgba(249,115,22,0.15); color: #f97316;">Pending</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Showcase 2: Finances -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center reveal">
+        <div class="order-2 lg:order-1 flex justify-center">
+          <div class="w-full max-w-sm rounded-2xl overflow-hidden" style="background: var(--bg-card); border: 1px solid var(--border);">
+            <div class="p-4">
+              <div class="font-semibold text-sm mb-4" style="color: var(--text-primary);">February Earnings</div>
+              <div class="text-3xl font-bold gradient-text mb-1">$8,450</div>
+              <div class="text-xs mb-4" style="color: #22c55e;">+18% from last month</div>
+              <!-- Mini Chart -->
+              <div class="flex items-end gap-1.5 h-20 mb-4">
+                <div class="flex-1 rounded-t" style="background: rgba(168,85,247,0.3); height: 40%;"></div>
+                <div class="flex-1 rounded-t" style="background: rgba(168,85,247,0.3); height: 55%;"></div>
+                <div class="flex-1 rounded-t" style="background: rgba(168,85,247,0.3); height: 35%;"></div>
+                <div class="flex-1 rounded-t" style="background: rgba(168,85,247,0.3); height: 70%;"></div>
+                <div class="flex-1 rounded-t" style="background: rgba(168,85,247,0.3); height: 60%;"></div>
+                <div class="flex-1 rounded-t" style="background: rgba(168,85,247,0.3); height: 80%;"></div>
+                <div class="flex-1 rounded-t gradient-brand" style="height: 95%;"></div>
+              </div>
+              <div class="flex justify-between text-[10px]" style="color: var(--text-secondary);">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <span class="section-label">Financial Tracking</span>
+          <h3 class="text-2xl sm:text-3xl font-bold mt-3" style="color: var(--text-primary);">Know your numbers,<br/><span class="gradient-text">own your income.</span></h3>
+          <p class="mt-4 text-sm leading-relaxed" style="color: var(--text-secondary);">Track every dollar in and out. See daily, weekly, and monthly breakdowns with visual charts. Export to Excel when you need the full picture.</p>
+          <ul class="mt-6 space-y-2.5">
+            <li class="flex items-center gap-2 text-sm" style="color: var(--text-secondary);">
+              <svg class="w-4 h-4 text-purple-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Income &amp; expense ledger
+            </li>
+            <li class="flex items-center gap-2 text-sm" style="color: var(--text-secondary);">
+              <svg class="w-4 h-4 text-purple-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Payment method tracking
+            </li>
+            <li class="flex items-center gap-2 text-sm" style="color: var(--text-secondary);">
+              <svg class="w-4 h-4 text-purple-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Visual analytics dashboard
+            </li>
+            <li class="flex items-center gap-2 text-sm" style="color: var(--text-secondary);">
+              <svg class="w-4 h-4 text-purple-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              One-click Excel export
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════ TESTIMONIALS ═══════════ -->
+  <section id="testimonials" class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="section-label">Testimonials</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-3">Loved by companions<br/><span class="gradient-text">everywhere.</span></h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card reveal">
+          <div class="flex items-center gap-1 mb-3">
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-sm leading-relaxed mb-4" style="color: var(--text-secondary);">"Finally an app that understands our industry. The stealth mode alone is worth it — my phone looks completely normal to anyone who sees it."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full gradient-brand flex items-center justify-center text-white text-xs font-bold">S</div>
+            <div>
+              <div class="text-sm font-semibold" style="color: var(--text-primary);">Sophie</div>
+              <div class="text-xs" style="color: var(--text-secondary);">Independent companion</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card reveal">
+          <div class="flex items-center gap-1 mb-3">
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-sm leading-relaxed mb-4" style="color: var(--text-secondary);">"I was using spreadsheets and notes apps before this. Companion replaced all of it. The financial tracking alone saves me hours every week."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full gradient-brand flex items-center justify-center text-white text-xs font-bold">M</div>
+            <div>
+              <div class="text-sm font-semibold" style="color: var(--text-primary);">Maya</div>
+              <div class="text-xs" style="color: var(--text-secondary);">Independent companion</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card reveal">
+          <div class="flex items-center gap-1 mb-3">
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-sm leading-relaxed mb-4" style="color: var(--text-secondary);">"The safety features give me real peace of mind. Check-in reminders, duress PIN, and the fact that nothing is stored in the cloud — it's exactly what we need."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full gradient-brand flex items-center justify-center text-white text-xs font-bold">A</div>
+            <div>
+              <div class="text-sm font-semibold" style="color: var(--text-primary);">Alexa</div>
+              <div class="text-xs" style="color: var(--text-secondary);">Independent companion</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ FAQ SECTION ═══════════ -->
+  <section id="faq" class="py-20 sm:py-28" style="background: var(--bg-secondary);">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="section-label">FAQ</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-3">Common<br/><span class="gradient-text">questions.</span></h2>
+      </div>
+
+      <div class="space-y-3 reveal">
+        <!-- FAQ Item 1 -->
+        <details class="group" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;">
+          <summary class="flex items-center justify-between cursor-pointer p-4 text-sm font-semibold" style="color: var(--text-primary);">
+            Is my data really stored only on my device?
+            <svg class="w-5 h-5 shrink-0 transition-transform group-open:rotate-180" style="color: var(--text-secondary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-4 pb-4 text-sm leading-relaxed" style="color: var(--text-secondary);">
+            Yes. Companion has zero servers. There are no accounts, no cloud sync, and no analytics. All your data lives in your browser's local storage, encrypted with keys that never leave your device.
+          </div>
+        </details>
+
+        <!-- FAQ Item 2 -->
+        <details class="group" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;">
+          <summary class="flex items-center justify-between cursor-pointer p-4 text-sm font-semibold" style="color: var(--text-primary);">
+            What happens if I lose my phone?
+            <svg class="w-5 h-5 shrink-0 transition-transform group-open:rotate-180" style="color: var(--text-secondary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-4 pb-4 text-sm leading-relaxed" style="color: var(--text-secondary);">
+            Since data is stored locally, losing your device means losing your data — unless you've exported a backup. We recommend regularly using the backup/export feature. Even if someone finds your phone, the PIN lock and encryption protect your information.
+          </div>
+        </details>
+
+        <!-- FAQ Item 3 -->
+        <details class="group" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;">
+          <summary class="flex items-center justify-between cursor-pointer p-4 text-sm font-semibold" style="color: var(--text-primary);">
+            Is it really free? What's the catch?
+            <svg class="w-5 h-5 shrink-0 transition-transform group-open:rotate-180" style="color: var(--text-secondary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-4 pb-4 text-sm leading-relaxed" style="color: var(--text-secondary);">
+            Companion is completely free to use with all core features. There's no catch — we believe safety and privacy tools should be accessible to everyone. A future Pro tier may add advanced features, but the core app will always remain free.
+          </div>
+        </details>
+
+        <!-- FAQ Item 4 -->
+        <details class="group" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;">
+          <summary class="flex items-center justify-between cursor-pointer p-4 text-sm font-semibold" style="color: var(--text-primary);">
+            What is stealth mode?
+            <svg class="w-5 h-5 shrink-0 transition-transform group-open:rotate-180" style="color: var(--text-secondary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-4 pb-4 text-sm leading-relaxed" style="color: var(--text-secondary);">
+            Stealth mode disguises the entire app interface as a basic calculator. Anyone looking at your screen will see a fully functional calculator — they won't know there's a CRM underneath. Enter your PIN in the calculator to unlock the real app.
+          </div>
+        </details>
+
+        <!-- FAQ Item 5 -->
+        <details class="group" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;">
+          <summary class="flex items-center justify-between cursor-pointer p-4 text-sm font-semibold" style="color: var(--text-primary);">
+            What is a duress PIN?
+            <svg class="w-5 h-5 shrink-0 transition-transform group-open:rotate-180" style="color: var(--text-secondary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-4 pb-4 text-sm leading-relaxed" style="color: var(--text-secondary);">
+            A duress PIN is a special code that, when entered instead of your real PIN, silently and irreversibly wipes all app data. It's designed for situations where you're forced to unlock your device. The app will appear empty as if freshly installed.
+          </div>
+        </details>
+
+        <!-- FAQ Item 6 -->
+        <details class="group" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;">
+          <summary class="flex items-center justify-between cursor-pointer p-4 text-sm font-semibold" style="color: var(--text-primary);">
+            Does it work on iPhone and Android?
+            <svg class="w-5 h-5 shrink-0 transition-transform group-open:rotate-180" style="color: var(--text-secondary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-4 pb-4 text-sm leading-relaxed" style="color: var(--text-secondary);">
+            Yes. Companion is a Progressive Web App (PWA) that works on any modern browser — iPhone, Android, tablet, laptop, or desktop. Just open the link and tap "Add to Home Screen" to install it like a native app.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ CTA / GET STARTED ═══════════ -->
+  <section id="get-started" class="py-20 sm:py-28 relative overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full opacity-15 blur-[100px]" style="background: radial-gradient(circle, #a855f7, #ec4899, transparent 70%);"></div>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center relative z-10 reveal">
+      <span class="section-label">Get Started</span>
+      <h2 class="text-3xl sm:text-4xl font-bold mt-3">Take control of<br/><span class="gradient-text">your business today.</span></h2>
+      <p class="mt-4 text-base max-w-xl mx-auto" style="color: var(--text-secondary);">Free. Private. No sign-up required. Install in seconds and start managing your bookings, clients, and finances — all from your device.</p>
+
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#" class="gradient-brand text-white font-semibold px-10 py-4 rounded-xl text-sm hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 shadow-lg animate-pulse-glow">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2m-4-4-4 4m0 0-4-4m4 4V4"/></svg>
+          Launch Companion
+        </a>
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center gap-4 justify-center text-sm" style="color: var(--text-secondary);">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          100% free
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          No app store needed
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          Works on any device
+        </span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="py-12 border-t" style="border-color: var(--border); background: var(--bg-secondary);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+        <!-- Logo -->
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-lg gradient-brand flex items-center justify-center">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 0 0 9-9c0-4.97-4.03-9-9-9s-9 4.03-9 9a9 9 0 0 0 9 9zm0 0c-1.66 0-3-4.03-3-9s1.34-9 3-9 3 4.03 3 9-1.34 9-3 9zm-9-9h18" /></svg>
+          </div>
+          <span class="text-sm font-bold" style="color: var(--text-primary);">Companion</span>
+        </div>
+
+        <!-- Links -->
+        <div class="flex items-center gap-6 text-sm" style="color: var(--text-secondary);">
+          <a href="#features" class="hover:text-purple-500 transition-colors">Features</a>
+          <a href="#privacy" class="hover:text-purple-500 transition-colors">Privacy</a>
+          <a href="#faq" class="hover:text-purple-500 transition-colors">FAQ</a>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-xs" style="color: var(--text-secondary);">
+          &copy; 2026 Companion. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════ SCRIPTS ═══════════ -->
+  <script>
+    // ── Dark Mode Toggle ──
+    const toggle = document.getElementById('theme-toggle');
+    const iconSun = document.getElementById('icon-sun');
+    const iconMoon = document.getElementById('icon-moon');
+    const html = document.documentElement;
+
+    function setTheme(dark) {
+      html.classList.toggle('dark', dark);
+      iconSun.classList.toggle('hidden', !dark);
+      iconMoon.classList.toggle('hidden', dark);
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    // Init: check system preference or stored preference
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(stored ? stored === 'dark' : prefersDark);
+
+    toggle.addEventListener('click', () => {
+      setTheme(!html.classList.contains('dark'));
+    });
+
+    // ── Mobile Menu ──
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // ── Scroll Reveal ──
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // ── Nav shadow on scroll ──
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        nav.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    // ── Smooth scroll for anchor links ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
